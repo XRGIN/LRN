@@ -96,7 +96,7 @@
         }
 
         body {
-            background-color: rgb(46, 36, 90);
+            background-color: rgb(26, 20, 49);
 
         }
 
@@ -105,7 +105,7 @@
             position: absolute;
             top: 0px;
             left: 0px;
-            width: 1400px;
+            width: 1500px;
             height: 40px;
             border-radius: 30px;
             z-index: -999;
@@ -125,12 +125,15 @@
         .topnav .search-container button {
             float: right;
             padding: 6px 10px;
-            margin-top: 8px;
-            margin-right: 16px;
+            margin-top: 0px;
+            margin-left: 20px;
             background: #ddd;
             font-size: 17px;
             border: none;
             cursor: pointer;
+            position: absolute;
+            left: 210px;
+            top: 8px;
         }
 
         .topnav .search-container button:hover {
@@ -388,13 +391,12 @@
         }
 
         .mus {
-            width: 100px;
-            height: 50px;
+            width: 150px;
+            height: 80px;
             position: absolute;
             top: 550px;
             left: 1200px;
             border-radius: 100px;
-
         }
 
         .topboard {
@@ -451,7 +453,7 @@
     </style>
 </head>
 
-<body>
+<body style="position: absolute;left: 200px;">
     <div class="menu-style dropdown-menu">
         <span tabindex="0" onclick="return true"><img src="img/down-arrow.png" style="width: 20px;height: 20px;"></span>
         <div tabindex="0" onclick="return true"></div>
@@ -562,7 +564,7 @@
     <iframe class="ife" width="560" height="315" src="https://www.youtube.com/embed/V_ERvayBr3M" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
-    <embed class="mus" height="100" width="100" src="music/[Electro House] Virtual Riot - Energy Drink.mp3"/>
+    <embed class="mus" height="100" width="90" src="music/[Electro House] Virtual Riot - Energy Drink.mp3" controls="play"/>
     <div class="topboard"></div>
     <div class="topboard1"><img src="img/fist.png" style="width: 100px;height: 100px;"></div>
     <div class="topboard2"></div>
