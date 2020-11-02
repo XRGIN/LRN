@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Riven</title>
+    <style>
+        .dropdown-menu {
+            position: relative;
+        }
+
+        .dropdown-menu>span {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .dropdown-menu>span,
+        .dropdown-menu>div {
+            cursor: pointer;
+            outline: 0;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .dropdown-menu>div {
+            background-color: rgba(0, 0, 0, 0);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+
+        .dropdown-menu>span:focus~div {
+            display: block;
+        }
+
+        .dropdown-menu>ul {
+            position: absolute;
+            z-index: 1;
+            visibility: hidden;
+            transition: visibility 0.5s;
+            opacity: 0;
+        }
+
+        .dropdown-menu>span:focus~ul {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-style>span:hover {
+            opacity: 0.75;
+        }
+
+        .menu-style>ul {
+            padding: 0;
+            margin-top: 2px;
+        }
+
+        .menu-style li {
+            border: 1px solid #49ffc8;
+            box-shadow: 2px 2px 5px #49ffc8;
+            padding: 0.2em 0.4em 0;
+            height: 1.5em;
+            background: #49ffc8;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .menu-style li:not(:first-child) {
+            border-top: none;
+        }
+
+        .menu-style li:hover {
+            background: #49ffc8;
+        }
+
+        .menu-style a {
+            text-decoration: none;
+            color: #555;
+        }
+
+        .bg {
+            width: 1400px;
+            height: 1200px;
+            background: url(img/bg_riven.gif);
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            opacity: 0.5;
+            z-index: -999;
+        }
+
+        body {
+            background-color: rgb(46, 36, 90);
+
+        }
+
+        .bar {
+            border: 20px solid rgb(54, 54, 54);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 1400px;
+            border-radius: 30px;
+            z-index: -999;
+        }
+
+        .topnav .search-container {
+            float: right;
+        }
+
+        .topnav input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+
+        .topnav .search-container button {
+            float: right;
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .topnav .search-container button:hover {
+            background: #ccc;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav .search-container {
+                float: none;
+            }
+
+            .topnav input[type=text],
+            .topnav .search-container button {
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+                margin: 0;
+                padding: 14px;
+            }
+
+            .topnav input[type=text] {
+                border: 1px solid #ccc;
+            }
+        }
+
+        .maintain {
+            width: 200px;
+            height: 100px;
+            background-color: #49ffc8;
+            position: absolute;
+            top: 100px;
+            left: 50px;
+            opacity: 0.7;
+            border-radius: 10px;
+        }
+
+        .maintain1 {
+            width: 200px;
+            height: 100px;
+            background-color: #3ddaab;
+            position: absolute;
+            top: 150px;
+            left: 50px;
+            opacity: 0.7;
+            border-radius: 10px;
+        }
+
+        .maintain2 {
+            width: 200px;
+            height: 100px;
+            background-color: #2da380;
+            position: absolute;
+            top: 200px;
+            left: 50px;
+            opacity: 0.7;
+            border-radius: 10px;
+        }
+
+        .maintain3 {
+            width: 200px;
+            height: 100px;
+            background-color: #1e7259;
+            position: absolute;
+            top: 250px;
+            left: 50px;
+            opacity: 0.7;
+            border-radius: 10px;
+        }
+
+        .maintain4 {
+            width: 200px;
+            height: 100px;
+            background-color: #154d3c;
+            position: absolute;
+            top: 300px;
+            left: 50px;
+            opacity: 0.7;
+            border-radius: 10px;
+        }
+
+        .maintain5 {
+            width: 200px;
+            height: 100px;
+            background-color: #1e5372;
+            position: absolute;
+            top: 350px;
+            left: 50px;
+            opacity: 0.7;
+            border-radius: 10px;
+        }
+
+        .maintain6 {
+            width: 200px;
+            height: 800px;
+            background-color: rgb(16, 54, 63);
+            position: absolute;
+            top: 400px;
+            left: 50px;
+            opacity: 0.7;
+            border-radius: 10px;
+        }
+
+        .secondtain {
+            width: 200px;
+            height: 200px;
+            background-color: #49ffc8;
+            position: absolute;
+            top: 670px;
+            left: 400px;
+            opacity: 1;
+            border-radius: 80px;
+        }
+
+        .thirdtain {
+            width: 200px;
+            height: 200px;
+            background-color: #49ffc8;
+            position: absolute;
+            top: 670px;
+            left: 600px;
+            opacity: 1;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+        }
+
+        .forthtain {
+            width: 200px;
+            height: 200px;
+            background-color: #49ffc8;
+            position: absolute;
+            top: 670px;
+            left: 800px;
+            opacity: 1;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .fifthtain {
+            width: 200px;
+            height: 200px;
+            background-color: #49ffc8;
+            position: absolute;
+            top: 670px;
+            left: 1000px;
+            opacity: 1;
+            border-radius: 80px;
+        }
+
+        .information {
+            width: 700px;
+            height: 300px;
+            background-color: #caffef;
+            position: absolute;
+            top: 900px;
+            left: 450px;
+            opacity: 0.7;
+            border-radius: 10px;
+        }
+
+        .information1 {
+            width: 700px;
+            height: 50px;
+            background-color: #caffef;
+            position: absolute;
+            top: 900px;
+            left: 450px;
+            opacity: 1;
+            border-radius: 10px;
+        }
+
+        .information2 {
+            width: 700px;
+            height: 50px;
+            background-color: #caffef;
+            position: absolute;
+            top: 900px;
+            left: 450px;
+            opacity: 1;
+            border-radius: 10px;
+        }
+
+        .information3 {
+            width: 700px;
+            height: 30px;
+            background-color: #caffef;
+            position: absolute;
+            top: 953px;
+            left: 450px;
+            opacity: 0.8;
+            border-radius: 10px;
+        }
+
+        .information3:hover {
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .information4 {
+            width: 700px;
+            height: 30px;
+            background-color: #caffef;
+            position: absolute;
+            top: 986px;
+            left: 450px;
+            opacity: 0.8;
+            border-radius: 10px;
+        }
+
+        .information4:hover {
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .information5 {
+            width: 700px;
+            height: 30px;
+            background-color: #caffef;
+            position: absolute;
+            top: 1019px;
+            left: 450px;
+            opacity: 0.8;
+            border-radius: 10px;
+        }
+
+        .information5:hover {
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .information6 {
+            width: 700px;
+            height: 30px;
+            background-color: #caffef;
+            position: absolute;
+            top: 1052px;
+            left: 450px;
+            opacity: 0.8;
+            border-radius: 10px;
+        }
+
+        .information6:hover {
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .ife {
+            position: absolute;
+            top: 80px;
+            left: 280px;
+            border-radius: 30px;
+            opacity: 0.8;
+            border: 15px solid rgba(91, 255, 241, 0.637);
+        }
+
+        .mus {
+            width: 100px;
+            height: 50px;
+            position: absolute;
+            top: 550px;
+            left: 1200px;
+            border-radius: 100px;
+
+        }
+
+        .topboard {
+            width: 550px;
+            height: 200px;
+            background-color: #caffef;
+            position: absolute;
+            top: 50px;
+            left: 900px;
+            opacity: 0.3;
+            border-radius: 10px;
+        }
+
+        .topboard1 {
+            width: 100px;
+            height: 100px;
+            background-color: #caffef;
+            position: absolute;
+            top: 50px;
+            left: 900px;
+            opacity: 0.6;
+            border-radius: 10px;
+        }
+
+        .topboard1:hover {
+            background-color: rgb(255, 220, 188);
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .topboard2 {
+            width: 100px;
+            height: 100px;
+            background-color: #caffef;
+            position: absolute;
+            top: 50px;
+            left: 1003px;
+            opacity: 0.3;
+            border-radius: 10px;
+        }
+
+        .player {
+
+            position: absolute;
+            top: 60px;
+            left: 1000px;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        .player:hover {
+        opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-style dropdown-menu">
+        <span tabindex="0" onclick="return true"><img src="img/down-arrow.png" style="width: 20px;height: 20px;"></span>
+        <div tabindex="0" onclick="return true"></div>
+        <ul>
+            <li style="border-top-left-radius: 10px;"><a
+                    href="https://universe.leagueoflegends.com/ja_JP/champion/riven/" onclick="Menu(this)"><img
+                        src="img/knight.png" style="width: 60px;height: 60px;opacity: 0.3;"></a>
+            </li>
+            <li><a href="https://universe.leagueoflegends.com/ja_JP/champion/riven/" onclick="Menu(this)"></a></li>
+            <li><a href="https://universe.leagueoflegends.com/ja_JP/champion/riven/" onclick="Menu(this)">レビン情報</a></li>
+        </ul>
+    </div>
+    <div class="bg" style="border-radius: 50px;"></div>
+    <div class="bar"></div>
+    <div>
+        <a href="#">
+            <img src="img/crossed.png" style="width: 30px;height: 30px;position: absolute;top: 5px;left: 50px;">
+        </a>
+        <a href=""><img src="img/sword.png"
+                style="width: 30px;height: 30px;position: absolute;top: 5px;left: 150px;"></a>
+        <a href=""><img src="img/puzzle.png"
+                style="width: 30px;height: 30px;position: absolute;top: 5px;left: 100px;"></a>
+        <a href=""><img src="img/bar/blood-drop.png"
+                style="width: 30px;height: 30px;position: absolute;top: 5px;left: 200px;"></a>
+        <a href=""><img src="img/bar/crusher.png"
+                style="width: 30px;height: 30px;position: absolute;top: 5px;left: 250px;"></a>
+        <a href=""><img src="img/bar/feedback.png"
+                style="width: 30px;height: 30px;position: absolute;top: 5px;left: 300px;"></a>
+        <a href=""><img src="img/bar/hurricane.png"
+                style="width: 30px;height: 30px;position: absolute;top: 5px;left: 350px;"></a>
+        <a href=""><img src="img/bar/shopping-cart.png"
+                style="width: 30px;height: 30px;position: absolute;top: 5px;left: 400px;"></a>
+        <a href=""><img src="img/game-console.png"
+                style="position: absolute;left: 280px;opacity: 0.4;border: 10px solid #49ffc8;padding: 30px;border-radius: 80px;top: 40px;"></a>
+    </div>
+
+    <div class="topnav" style="position: absolute;top: -3px;left: 1200px;">
+        <div class="search-container">
+            <form action="https://leagueoflegends.fandom.com/wiki/Riven">
+                <input type="text" placeholder="検索する" name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="maintain">
+        <h3>コンテンツ</h3>
+    </div>
+    <div class="maintain1"></div>
+    <div class="maintain2"></div>
+    <div class="maintain3"></div>
+    <div class="maintain4"></div>
+    <div class="maintain5"></div>
+    <div class="maintain6">
+        <div style="position: absolute;top: 40px;color: rgb(255, 156, 62);">
+            <h5>これはレビンの家です</h5>
+            <h5>レイヴンに優しくしてください</h5>
+            <img src="img/Broken_Wings.png"
+                style="width: 50px;height: 50px;border-radius: 10px;border: 5px solid #ffae00;">
+            <h4>壊れた翼効果RADIUS：150/250/200 / 300キャストタイム：なしクールダウン：13</h4>
+            <h6>スキルがクールダウンし続ける前に、レイヴンはブロークンウィングを3回アクティブにすることができます。レイヴンが4秒以内にこの能力を再キャストしない場合、能力はクールダウンし続けます。
+
+                これらの3人のキャラクターはそれぞれ、リヴェンを剣で振り回し、ヒットしたすべての敵に物理的なダメージを与え、基本攻撃タイマーをリセットし、ブロークンウィングのターゲットに基本攻撃を実行するように命令しました（もしそうなら）。
+            </h6>
+        </div>
+    </div>
+    <div class="secondtain"><img src="img/knight.png"
+            style="width: 100px;height: 100px;position: absolute;top: 50px;left: 50px;"></div>
+    <div class="thirdtain">
+        <h1 style="position: absolute;left: 70px;top: 50px;">
+            これはリ</h1>
+    </div>
+    <div class="forthtain">
+        <h1 style="position: absolute;top: 50px;color: rgb(255, 145, 0);">ベンです</h1>
+    </div>
+    <div class="fifthtain"><img src="img/eyeball.png"
+            style="width: 100px;height: 100px;position: absolute;top: 50px;left: 50px;"></div>
+    <div>
+        <img src="img/icon_riven.gif" style="position: absolute;left: 30px;top: 100px;width: 250px;height: 350px;">
+    </div>
+    <div class="information"></div>
+    <div class="information1">
+        <h3 style="position: absolute;top: -5px;left: 350px;">情報</h3>
+    </div>
+
+    <div class="information3">
+        <h6 style="position: absolute;top: -17px;left: 10px;">
+            レイヴンのQが1.5倍に強化されました!!2つのQレベルを使用して、クリティカルストライクのチャンスをトリガーし、ダメー...</h6>
+    </div>
+    <div class="information4">
+        <h6 style="position: absolute;top: -17px;left: 10px;">
+
+            私は私のカラスが大好きです！...</h6>
+    </div>
+    <div class="information5">
+        <h6 style="position: absolute;top: -17px;left: 10px;">
+            レイヴンバージョン(https://lol.garena.tw/game/champion/Riven)
+        </h6>
+    </div>
+    <div class="information6">
+        <h6 style="position: absolute;top: -17px;left: 10px;">
+            レイヴンのQが1.5倍に強化されました!!2つのQレベルを使用して、クリティカルストライクのチャンスをトリガーし、ダメー...</h6>
+    </div>
+
+    <div><img src="img/icon2_riven.gif"
+            style="width: 250px;height: 250px;position: absolute;left: 1180px;top: 400px;border-radius: 200px;opacity: 1;"><img
+            src="img/unnamed-unscreen.gif"
+            style="width: 700px;height: 500px;position: absolute;left: 955px;top: 275px;"></div>
+    <iframe class="ife" width="560" height="315" src="https://www.youtube.com/embed/V_ERvayBr3M" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    <embed class="mus" height="100" width="100" src="music/[Electro House] Virtual Riot - Energy Drink.mp3"/>
+    <div class="topboard"></div>
+    <div class="topboard1"><img src="img/fist.png" style="width: 100px;height: 100px;"></div>
+    <div class="topboard2"></div>
+    <div class="player"><img src="img/LargeTidyDolphin-size-restrict-unscreen.gif" style="width: 100px;height: 75px;">
+    </div>
+</body>
+
+</html>
